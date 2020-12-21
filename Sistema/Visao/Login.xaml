@@ -9,8 +9,8 @@
     <Grid Margin="10,0,2,-1">
         <Label Content="Usuário" HorizontalAlignment="Left" Margin="36,38,0,0" VerticalAlignment="Top" AutomationProperties.Name="LblUsuario"/>
         <Label Content="Senha" HorizontalAlignment="Left" Margin="44,84,0,0" VerticalAlignment="Top" AutomationProperties.Name="LblSenha"/>
-        <Button Content="Login" HorizontalAlignment="Left" Margin="36,150,0,0" VerticalAlignment="Top" Width="80" AutomationProperties.Name="BtnLogin" Height="36" Click="Button_Click_1"/>
-        <Button Content="Sair" HorizontalAlignment="Left" Margin="192,150,0,0" VerticalAlignment="Top" Width="75" AutomationProperties.Name="BtnSair" RenderTransformOrigin="1.669,0.14" Height="36" Click="Button_Click"/>
+        <Button x:Name="btnLogin" Content="Login" HorizontalAlignment="Left" Margin="36,150,0,0" VerticalAlignment="Top" Width="80" AutomationProperties.Name="BtnLogin" Height="36" Click="Button_Click_1"/>
+        <Button x:Name="btnSair" Content="Sair" HorizontalAlignment="Left" Margin="192,150,0,0" VerticalAlignment="Top" Width="75" AutomationProperties.Name="BtnSair" RenderTransformOrigin="1.669,0.14" Height="36" Click="Button_Click"/>
         <TextBox x:Name="txbUsuario" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="176" Margin="91,42,0,0" AutomationProperties.Name="txbUsuario"/>
         <PasswordBox x:Name="psbSenha" HorizontalAlignment="Left" Margin="91,86,0,0" VerticalAlignment="Top" Width="176" Height="24"/>
     </Grid>
