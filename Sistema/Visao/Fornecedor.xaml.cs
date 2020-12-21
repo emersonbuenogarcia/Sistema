@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Sistema.Modelo;
+using Sistema.Controle;
 
 namespace Sistema.Visao {
     /// <summary>
@@ -20,7 +21,7 @@ namespace Sistema.Visao {
     public partial class Fornecedor : Window {
         private string opcao;
         private bool retorno = false;
-        private Controle.EditaFornecedor editar = new Controle.EditaFornecedor();
+        private EditaFornecedor editar = new EditaFornecedor();
         public Fornecedor()
         {
             InitializeComponent();
@@ -97,9 +98,19 @@ namespace Sistema.Visao {
             {
                 if (opcao == "Inserir")
                 {
-                    fornecedores f = new fornecedores();
-                   /* getForn();*/
-                    if (editar.InsereFornecedor(f) == true)
+                    fornecedore f = new fornecedore();
+                    f.for_nome = txbNome.Text;
+                    f.for_endereco = txbEndereco.Text;
+                    if (ckbAtivo.IsChecked == true)
+                    {
+                        f.for_ativo = char.ToString('1');
+                    }
+                    else
+                    {
+                        f.for_ativo = char.ToString('0');
+                    }
+                    /* getForn();*/
+                    if (editar.InserirFornecedor(f) == true)
                     {
                         retorno = true;
                     }
@@ -107,7 +118,7 @@ namespace Sistema.Visao {
                 else if (opcao == "Alterar")
                 {
                    
-                    }
+                    
                 }
             }
         }

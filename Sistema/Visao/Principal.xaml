@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sistema.Visao"
     mc:Ignorable="d"
-        Title="Sistema" Height="450" Width="800" WindowState="Maximized" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Icon="IconeSistema.png">
+        Title="Sistema" Height="450" Width="800" WindowState="Maximized" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Icon="IconeSistema.png" IsEnabled="false">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
