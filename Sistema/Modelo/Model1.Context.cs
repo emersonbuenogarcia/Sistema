@@ -13,10 +13,10 @@ namespace Sistema.Modelo
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class bdlojaEntities : DbContext
+    public partial class bdlojaEntities2 : DbContext
     {
-        public bdlojaEntities()
-            : base("name=bdlojaEntities")
+        public bdlojaEntities2()
+            : base("name=bdlojaEntities2")
         {
         }
     
@@ -25,8 +25,8 @@ namespace Sistema.Modelo
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<fornecedores> fornecedores { get; set; }
-        public virtual DbSet<produtos> produtos { get; set; }
-        public virtual DbSet<usuarios> usuarios { get; set; }
+        public virtual DbSet<fornecedore> fornecedores { get; set; }
+        public virtual DbSet<produto> produtos { get; set; }
+        public virtual DbSet<usuario> usuarios { get; set; }
     }
 }

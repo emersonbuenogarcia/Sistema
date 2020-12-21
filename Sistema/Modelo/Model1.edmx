@@ -57,7 +57,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="bdlojaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="fornecedores">
+        <EntityType Name="fornecedore">
           <Key>
             <PropertyRef Name="id_fornecedores" />
           </Key>
@@ -67,7 +67,7 @@
           <Property Name="for_ativo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
           <NavigationProperty Name="produtos" Relationship="Self.fk_fornecedores" FromRole="fornecedores" ToRole="produtos" />
         </EntityType>
-        <EntityType Name="produtos">
+        <EntityType Name="produto">
           <Key>
             <PropertyRef Name="id_produtos" />
           </Key>
@@ -75,9 +75,9 @@
           <Property Name="id_fornecedores" Type="Int32" Nullable="false" />
           <Property Name="pro_nome" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="pro_quantidade" Type="Decimal" Precision="10" Scale="3" Nullable="false" />
-          <NavigationProperty Name="fornecedores" Relationship="Self.fk_fornecedores" FromRole="produtos" ToRole="fornecedores" />
+          <NavigationProperty Name="fornecedore" Relationship="Self.fk_fornecedores" FromRole="produtos" ToRole="fornecedores" />
         </EntityType>
-        <EntityType Name="usuarios">
+        <EntityType Name="usuario">
           <Key>
             <PropertyRef Name="id_usuarios" />
           </Key>
@@ -86,8 +86,8 @@
           <Property Name="usu_senha" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <Association Name="fk_fornecedores">
-          <End Role="fornecedores" Type="Self.fornecedores" Multiplicity="1" />
-          <End Role="produtos" Type="Self.produtos" Multiplicity="*" />
+          <End Role="fornecedores" Type="Self.fornecedore" Multiplicity="1" />
+          <End Role="produtos" Type="Self.produto" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="fornecedores">
               <PropertyRef Name="id_fornecedores" />
@@ -97,10 +97,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="bdlojaEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="fornecedores" EntityType="Self.fornecedores" />
-          <EntitySet Name="produtos" EntityType="Self.produtos" />
-          <EntitySet Name="usuarios" EntityType="Self.usuarios" />
+        <EntityContainer Name="bdlojaEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="fornecedores" EntityType="Self.fornecedore" />
+          <EntitySet Name="produtos" EntityType="Self.produto" />
+          <EntitySet Name="usuarios" EntityType="Self.usuario" />
           <AssociationSet Name="fk_fornecedores" Association="Self.fk_fornecedores">
             <End Role="fornecedores" EntitySet="fornecedores" />
             <End Role="produtos" EntitySet="produtos" />
@@ -111,9 +111,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="bdlojaModelStoreContainer" CdmEntityContainer="bdlojaEntities">
+        <EntityContainerMapping StorageEntityContainer="bdlojaModelStoreContainer" CdmEntityContainer="bdlojaEntities2">
           <EntitySetMapping Name="fornecedores">
-            <EntityTypeMapping TypeName="bdlojaModel.fornecedores">
+            <EntityTypeMapping TypeName="bdlojaModel.fornecedore">
               <MappingFragment StoreEntitySet="fornecedores">
                 <ScalarProperty Name="id_fornecedores" ColumnName="id_fornecedores" />
                 <ScalarProperty Name="for_nome" ColumnName="for_nome" />
@@ -123,7 +123,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="produtos">
-            <EntityTypeMapping TypeName="bdlojaModel.produtos">
+            <EntityTypeMapping TypeName="bdlojaModel.produto">
               <MappingFragment StoreEntitySet="produtos">
                 <ScalarProperty Name="id_produtos" ColumnName="id_produtos" />
                 <ScalarProperty Name="id_fornecedores" ColumnName="id_fornecedores" />
@@ -133,7 +133,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="usuarios">
-            <EntityTypeMapping TypeName="bdlojaModel.usuarios">
+            <EntityTypeMapping TypeName="bdlojaModel.usuario">
               <MappingFragment StoreEntitySet="usuarios">
                 <ScalarProperty Name="id_usuarios" ColumnName="id_usuarios" />
                 <ScalarProperty Name="usu_nome" ColumnName="usu_nome" />
@@ -155,7 +155,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
