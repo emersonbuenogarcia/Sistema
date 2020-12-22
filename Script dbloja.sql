@@ -9,6 +9,7 @@ usu_senha varchar(40) not null
 create table fornecedores(
 id_fornecedores int identity(1,1) primary key not null,
 for_nome varchar(120) not null,
+for_cnpj varchar(14) not null,
 for_endereco varchar(200) not null,
 for_ativo char(1) not null
 )
