@@ -4,8 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sistema.Visao"
-       mc:Ignorable="d"
-        Title="Login" Height="235" Width="340" ScrollViewer.VerticalScrollBarVisibility="Disabled" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        mc:Ignorable="d"
+          Title="Login" Height="235" Width="340" ScrollViewer.VerticalScrollBarVisibility="Disabled" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid Margin="10,0,2,-1">
         <Label Content="Usuário" HorizontalAlignment="Left" Margin="36,38,0,0" VerticalAlignment="Top" AutomationProperties.Name="LblUsuario"/>
         <Label Content="Senha" HorizontalAlignment="Left" Margin="44,84,0,0" VerticalAlignment="Top" AutomationProperties.Name="LblSenha"/>

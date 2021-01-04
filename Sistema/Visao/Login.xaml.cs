@@ -11,8 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Sistema.Controle;
 using Sistema.Modelo;
+using System.Data.SqlClient;
 
 namespace Sistema.Visao {
     /// <summary>
@@ -26,33 +26,45 @@ namespace Sistema.Visao {
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            
+            SqlConnection sqlCon = new SqlConnection(@"Data Source =.; Initial Catalog = bdsistema; Persist Security Info = True; User ID = sa; Password = 123456");
+            try
+            {
+                if (sqlCon.State == System.Data.ConnectionState.Closed);
+                sqlCon.Open();
+                String query = "SELECT COUNT(1) FROM USUARIOS WHERE USU_NOME =@usuario and USU_SENHA =@senha";
+                SqlCommand cmd = new SqlCommand(query, sqlCon);
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.Parameters.AddWithValue("@usuario", txbUsuario.Text);
+                cmd.Parameters.AddWithValue("@senha", psbSenha.Password);
+                int count = Convert.ToInt32(cmd.ExecuteScalar());
+                if (count == 1)
+                {
+                    String logado = "";
+                    Principal principal = new Principal();
+                    logado = txbUsuario.Text;
+                    principal.lblLogado.Content = logado;
+                    principal.Show(); 
+                    this.Close();
+                }
+                else
+                { 
+                    MessageBox.Show("Usuário ou senha incorreto!", "Informação", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                sqlCon.Close();
+            }
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Logar();
-        }
-
-        private void Logar()
-        {
-            try
-            {
-                usuario u = new usuario();
-                u.usu_nome = txbUsuario.Text;
-                u.usu_senha = hashbytes('md5', psbSenha.Password);
-                if (LoginUsuario.Logar(u) == true)
-                {
-                    Principal principal = new Principal();
-                    principal.IsEnabled = true;
-                    principal.Show();
-                }
-                return true;
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
+            this.Close();
         }
     }
 }

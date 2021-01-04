@@ -22,23 +22,23 @@ namespace Sistema.Visao {
             InitializeComponent();
         }
 
-        private void imProdutos_Click(object sender, RoutedEventArgs e)
-        {
-            Produto ownedProduto = new Produto();
-            ownedProduto.Owner = this;
-            ownedProduto.ShowDialog();
-        }
-
-        private void imFornecedores_Click(object sender, RoutedEventArgs e)
-        {
-            Fornecedor ownedFornecedor = new Fornecedor();
-            ownedFornecedor.Owner = this;
-            ownedFornecedor.ShowDialog();
-        }
-
-        private void imSair_Click(object sender, RoutedEventArgs e)
+        private void mnSair_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void mniFornecedores_Click(object sender, RoutedEventArgs e)
+        {
+            Fornecedores ownedFornecedores = new Fornecedores();
+            ownedFornecedores.Owner = this;
+            ownedFornecedores.ShowDialog();
+        }
+
+        private void mniProdutos_Click(object sender, RoutedEventArgs e)
+        {
+            Produtos ownedProdutos = new Produtos();
+            ownedProdutos.Owner = this;
+            ownedProdutos.ShowDialog();
         }
     }
 }
