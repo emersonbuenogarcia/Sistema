@@ -22,6 +22,7 @@ namespace Sistema.Modelo
     
         public int id_fornecedores { get; set; }
         public string for_nome { get; set; }
+        public string for_cnpj { get; set; }
         public string for_endereco { get; set; }
         public string for_ativo { get; set; }
     
