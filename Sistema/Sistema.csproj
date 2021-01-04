@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1A0E4D27-57BA-4DB3-ACB6-CC52F29FE442}</ProjectGuid>
+    <ProjectGuid>{5CED8477-5539-4364-86C5-A0F5A1D20546}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Sistema</RootNamespace>
     <AssemblyName>Sistema</AssemblyName>
@@ -64,49 +64,44 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controle\EditaFornecedor.cs" />
-    <Compile Include="Controle\LoginUsuario.cs" />
+    <Compile Include="Controle\Conexao.cs" />
+    <Compile Include="Controle\EditarFornecedor.cs" />
+    <Compile Include="Controle\EditarProuto.cs" />
+    <Compile Include="Controle\EditarUsuario.cs" />
+    <Compile Include="Modelo\DM.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DM.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\DM.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\DM.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DM.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Modelo\fornecedore.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Modelo\Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Modelo\Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Modelo\Model1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
+      <DependentUpon>DM.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\produto.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>DM.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\usuario.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>DM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Visao\Fornecedor.xaml.cs">
-      <DependentUpon>Fornecedor.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Visao\Login.xaml.cs">
-      <DependentUpon>Login.xaml</DependentUpon>
+    <Compile Include="Visao\Fornecedores.xaml.cs">
+      <DependentUpon>Fornecedores.xaml</DependentUpon>
     </Compile>
     <Compile Include="Visao\Principal.xaml.cs">
       <DependentUpon>Principal.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Visao\Produto.xaml.cs">
-      <DependentUpon>Produto.xaml</DependentUpon>
+    <Compile Include="Visao\Produtos.xaml.cs">
+      <DependentUpon>Produtos.xaml</DependentUpon>
     </Compile>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Page Include="Visao\Fornecedor.xaml">
+    <Page Include="Visao\Fornecedores.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -114,11 +109,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Visao\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
     <Page Include="Visao\Principal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Visao\Produto.xaml">
+    <Page Include="Visao\Produtos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -141,12 +143,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Modelo\Model1.edmx">
+    <EntityDeploy Include="Modelo\DM.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+      <LastGenOutput>DM.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Modelo\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
+    <None Include="Modelo\DM.edmx.diagram">
+      <DependentUpon>DM.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -157,23 +159,22 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
+    <Content Include="Modelo\DM.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DM.Context.cs</LastGenOutput>
+      <DependentUpon>DM.edmx</DependentUpon>
+    </Content>
+    <Content Include="Modelo\DM.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DM.edmx</DependentUpon>
+      <LastGenOutput>DM.cs</LastGenOutput>
+    </Content>
     <Resource Include="Visao\IconeSistema.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Modelo\Model1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Modelo\Model1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
