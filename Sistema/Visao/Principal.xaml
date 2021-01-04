@@ -1,0 +1,29 @@
+﻿<Window x:Class="Sistema.Visao.Principal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sistema.Visao"
+        mc:Ignorable="d"
+        Title="Principal" Height="450" Width="800" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" WindowState="Maximized" Icon="IconeSistema.png">
+    <Grid>
+        <Menu x:Name="menuPrincipal" Margin="2,2,0,0" Height="20" VerticalAlignment="Top">
+            <MenuItem x:Name="mnCadastros" Header="Cadastros" Height="20" Width="67">
+                <MenuItem x:Name="mniFornecedores" Header="Fornecedores" HorizontalAlignment="Left" Height="20" Width="160" Margin="0,0,-20,0" Click="mniFornecedores_Click"/>
+                <Separator/>
+                <MenuItem x:Name="mniProdutos" Header="Produtos" HorizontalAlignment="Left" Height="20" Width="160" Click="mniProdutos_Click"/>
+            </MenuItem>
+            <MenuItem x:Name="mnSair" Header="Sair" Height="20" Width="49" Click="mnSair_Click"/>
+        </Menu>
+        <Grid Margin="0,374,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="794">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="25*"/>
+                <ColumnDefinition Width="11*"/>
+                <ColumnDefinition Width="111*"/>
+                <ColumnDefinition Width="250*"/>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="lblUsuario" Content="Usuário:" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,16,0" Grid.ColumnSpan="2" FontWeight="Bold" Width="56" Height="30"/>
+            <Label x:Name="lblLogado" Content="Logado" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="6,0,0,0" Width="327" Grid.Column="1" Grid.ColumnSpan="3" FontWeight="Bold" Height="30"/>
+        </Grid>
+    </Grid>
+</Window>

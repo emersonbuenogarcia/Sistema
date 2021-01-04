@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="bdsistemaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="fornecedores">
+          <Key>
+            <PropertyRef Name="id_fornecedores" />
+          </Key>
+          <Property Name="id_fornecedores" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="for_nome" Type="varchar" MaxLength="120" Nullable="false" />
+          <Property Name="for_cnpj" Type="varchar" MaxLength="18" Nullable="false" />
+          <Property Name="for_endereco" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="for_ativo" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="produtos">
+          <Key>
+            <PropertyRef Name="id_produtos" />
+          </Key>
+          <Property Name="id_produtos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_fornecedores" Type="int" Nullable="false" />
+          <Property Name="pro_nome" Type="varchar" MaxLength="120" Nullable="false" />
+          <Property Name="pro_quantidade" Type="numeric" Precision="10" Scale="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="usuarios">
+          <Key>
+            <PropertyRef Name="id_usuarios" />
+          </Key>
+          <Property Name="id_usuarios" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usu_nome" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="usu_senha" Type="varchar" MaxLength="512" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_fornecedores">
+          <End Role="fornecedores" Type="Self.fornecedores" Multiplicity="1" />
+          <End Role="produtos" Type="Self.produtos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fornecedores">
+              <PropertyRef Name="id_fornecedores" />
+            </Principal>
+            <Dependent Role="produtos">
+              <PropertyRef Name="id_fornecedores" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="bdsistemaModelStoreContainer">
+          <EntitySet Name="fornecedores" EntityType="Self.fornecedores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="produtos" EntityType="Self.produtos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usuarios" EntityType="Self.usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_fornecedores" Association="Self.FK_fornecedores">
+            <End Role="fornecedores" EntitySet="fornecedores" />
+            <End Role="produtos" EntitySet="produtos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="bdsistemaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="fornecedore">
+          <Key>
+            <PropertyRef Name="id_fornecedores" />
+          </Key>
+          <Property Name="id_fornecedores" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="for_nome" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="for_cnpj" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="for_endereco" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="for_ativo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="produtos" Relationship="Self.FK_fornecedores" FromRole="fornecedores" ToRole="produtos" />
+        </EntityType>
+        <EntityType Name="produto">
+          <Key>
+            <PropertyRef Name="id_produtos" />
+          </Key>
+          <Property Name="id_produtos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_fornecedores" Type="Int32" Nullable="false" />
+          <Property Name="pro_nome" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pro_quantidade" Type="Decimal" Precision="10" Scale="3" Nullable="false" />
+          <NavigationProperty Name="fornecedore" Relationship="Self.FK_fornecedores" FromRole="produtos" ToRole="fornecedores" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="id_usuarios" />
+          </Key>
+          <Property Name="id_usuarios" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usu_nome" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usu_senha" Type="String" MaxLength="512" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_fornecedores">
+          <End Role="fornecedores" Type="Self.fornecedore" Multiplicity="1" />
+          <End Role="produtos" Type="Self.produto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fornecedores">
+              <PropertyRef Name="id_fornecedores" />
+            </Principal>
+            <Dependent Role="produtos">
+              <PropertyRef Name="id_fornecedores" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="bdsistemaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="fornecedores" EntityType="Self.fornecedore" />
+          <EntitySet Name="produtos" EntityType="Self.produto" />
+          <EntitySet Name="usuarios" EntityType="Self.usuario" />
+          <AssociationSet Name="FK_fornecedores" Association="Self.FK_fornecedores">
+            <End Role="fornecedores" EntitySet="fornecedores" />
+            <End Role="produtos" EntitySet="produtos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="bdsistemaModelStoreContainer" CdmEntityContainer="bdsistemaEntities">
+          <EntitySetMapping Name="fornecedores">
+            <EntityTypeMapping TypeName="bdsistemaModel.fornecedore">
+              <MappingFragment StoreEntitySet="fornecedores">
+                <ScalarProperty Name="id_fornecedores" ColumnName="id_fornecedores" />
+                <ScalarProperty Name="for_nome" ColumnName="for_nome" />
+                <ScalarProperty Name="for_cnpj" ColumnName="for_cnpj" />
+                <ScalarProperty Name="for_endereco" ColumnName="for_endereco" />
+                <ScalarProperty Name="for_ativo" ColumnName="for_ativo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="produtos">
+            <EntityTypeMapping TypeName="bdsistemaModel.produto">
+              <MappingFragment StoreEntitySet="produtos">
+                <ScalarProperty Name="id_produtos" ColumnName="id_produtos" />
+                <ScalarProperty Name="id_fornecedores" ColumnName="id_fornecedores" />
+                <ScalarProperty Name="pro_nome" ColumnName="pro_nome" />
+                <ScalarProperty Name="pro_quantidade" ColumnName="pro_quantidade" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuarios">
+            <EntityTypeMapping TypeName="bdsistemaModel.usuario">
+              <MappingFragment StoreEntitySet="usuarios">
+                <ScalarProperty Name="id_usuarios" ColumnName="id_usuarios" />
+                <ScalarProperty Name="usu_nome" ColumnName="usu_nome" />
+                <ScalarProperty Name="usu_senha" ColumnName="usu_senha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
